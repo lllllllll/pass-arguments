@@ -1,0 +1,55 @@
+<h1>Hi argument</h1>
+<p>Aaaa : <%= argument %>
+</p>
+
+<div id="c-table"></div>
+
+<script>
+  const data = [
+    {
+      fundName: 'B-INCOMESSF',
+      nav: '10.0548',
+      bid: '10.0549',
+      offer: '10.0548',
+      change: '0.0107',
+    },
+    {
+      fundName: 'BM70SSF',
+      nav: '9.9774',
+      bid: '9.9775',
+      offer: '9.9774',
+      change: '0.0927',
+    },
+    {
+      fundName: 'BM70SSV',
+      nav: '9.9774',
+      bid: '9.9775',
+      offer: '9.9774',
+      change: '0.0927',
+    }
+  ];
+  const argument = "<%= argument %>";
+  console.log('>>> argument > ', argument);
+  var divTable = document.getElementById('c-table');
+  function tableCreate() {
+    tbl = document.createElement('table');
+    tbl.style.width = '100px';
+    tbl.style.border = '1px solid black';
+
+    for (var i = 0; i < data.length; i++) {
+      var tr = tbl.insertRow();
+      var name = Object.keys(data[i]);
+      for (let j = 0; j < Object.keys(data[i]).length; j++) {
+        var td = tr.insertCell();
+        td.appendChild(document.createTextNode(data[i][name[j]]));
+        if (argument === data[i][name[j]]) {
+          td.style.border = '1px solid #f00';
+        } else {
+          td.style.border = '1px solid black';
+        }
+      }
+    }
+    divTable.appendChild(tbl);
+  }
+  tableCreate();
+</script>
