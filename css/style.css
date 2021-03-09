@@ -1,0 +1,1 @@
+*{margin:0;padding:0;box-sizing:inherit}html,body{height:100%;width:100%}.container{min-width:600px;height:100%}.row{display:flex;height:100%;width:100%}.row>.col{flex:1;border-right:1px solid #ccc}.row>.col.w200{width:200px;flex:none}.row>.col.w300{width:300px;flex:none}

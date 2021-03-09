@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test</title>
+  <script src="https://unpkg.com/vue@next"></script>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+  <div id="app" class="container">
+    <div class="row">
+      <div class="col w200">
+        <input v-model="number" @change="change" type="number" />
+      </div>
+      <div class="col">
+        <select v-model="isType" @change="selected">
+          <option value="isPrime">isPrime</option>
+          <option value="IsFibanacci">IsFibanacci</option>
+        </select>
+      </div>
+      <div class="col w300">{{isBoolean}}</div>
+    </div>
+  </div>
+  <script>
+    const App = {
+      data() {
+        return {
+          number: 0,
+          isType: 'isPrime',
+          isBoolean: true
+        }
+      },
+      methods: {
+        change(e) {
+          this.number = e.target.value && e.target.value <= 1 ? 1 : Math.ceil(e.target.value);
+          this.checkType();
+        },
+        selected(e) {
+          this.isType = e.target.value;
+        },
+        checkType() {
+          if (this.isType === 'isPrime') {
+            this.isPrime(this.number);
+          } else {
+            this.isFibonacci(this.number);
+          }
+        },
+        isPrime(num) {
+          if (num <= 1) return false;
+          if (num === 2) return true;
+          for (let i = 2; i < num; i++) {
+            if (num % i === 0) {
+              return this.isBoolean = false;
+            }
+          }
+          return this.isBoolean = true;
+        },
+        isFibonacci(query, count = 1, last = 0) {
+          if (count < query) {
+            return this.isFibonacci(query, count + last, count);
+          };
+          if (count === query) {
+            return this.isBoolean = true;
+          }
+          return this.isBoolean = false;
+        }
+      }
+    }
+    Vue.createApp(App).mount('#app')
+  </script>
+</body>
+
+</html>
